@@ -22,15 +22,12 @@ const Landing = () => {
     aacv: 25000,
     infoCost: 7200,
   });
-  const [net, setNet] = useState(0);
-  const [totalROI, setTotalRoi] = useState(0);
 
   const handleDataChange = (e, value) => {
     setData({
       ...data,
       [e.target.name]: Number(value) || Number(e.target.value),
-      net: calculateNet(),
-      roi: calculateTotalRoi(),
+      // net: calculateNet(),
     });
     console.log(e.target.value);
   };
@@ -38,27 +35,22 @@ const Landing = () => {
     const net =
       data.salesRep *
       data.demos *
-      data.closeRate *
+      (data.closeRate / 100) *
       (11 - data.salesCycle) *
       data.aacv;
     const res = Number(net);
-    return setNet(res);
+    return res.toFixed(0);
   };
   const calculateTotalRoi = () => {
-    const netValue =
-      (data.salesRep *
-        data.demos *
-        data.closeRate *
-        (11 - data.salesCycle) *
-        data.aacv) /
-      data.infoCost;
-    const ans = Number(netValue);
-
-    return setTotalRoi(ans);
+    const ans = calculateNet() / data.infoCost;
+    const res = Number(ans);
+    return res.toFixed(0);
   };
   return (
     <>
-      <Container style={{ paddingTop: "40px" }}>
+      <Container
+        style={{ paddingTop: "40px", fontFamily: "PlusJakartaSans-Medium" }}
+      >
         <Row style={{ textAlign: "right", marginBottom: 40 }}>
           <span>
             <LogoText />
@@ -97,7 +89,7 @@ const Landing = () => {
           >
             <Col style={{ color: "#616680" }}>Total ROI</Col>
             <Col style={{ textAlign: "right", color: "#1c3b71", fontSize: 20 }}>
-              {totalROI}
+              {calculateTotalRoi()}
             </Col>
           </Row>
         </Row>
@@ -320,7 +312,7 @@ const Landing = () => {
                 color: "#1c3b71",
               }}
             >
-              {net}
+              {calculateNet()}
             </span>
           </Col>
         </Row>
