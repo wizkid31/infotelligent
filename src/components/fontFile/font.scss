@@ -47,8 +47,8 @@
   src: url(./assets/fonts/PlusJakartaSans-MediumItalic.ttf);
 }
 @font-face {
-  font-family: PlusJakartaSans-Regular;
-  src: url(./assets/fonts/PlusJakartaSans-Regular.ttf);
+  font-family: "PlusJakartaSans-Regular";
+  src: url("../../assets/fonts/PlusJakartaSans-Regular.ttf");
 }
 @font-face {
   font-family: PlusJakartaSans-SemiBold;
@@ -57,4 +57,8 @@
 @font-face {
   font-family: PlusJakartaSans-SemiBoldItalic;
   src: url(./assets/fonts/PlusJakartaSans-SemiBoldItalic.ttf);
+}
+@font-face {
+  font-family: PlusJakartaSans-VariableFont_wght;
+  src: url(./assets/fonts/PlusJakartaSans-VariableFont_wght.ttf);
 }
