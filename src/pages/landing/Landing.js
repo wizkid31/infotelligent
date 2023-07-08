@@ -6,7 +6,7 @@ import { ReactComponent as LogoText } from "../../assets/svgs/logo_text.svg";
 const Landing = () => {
   const variables = [
     "Number of Sales Rep",
-    "Number of Demos Per Representative",
+    "Number of Demos Per Reps",
     "Close Rate (%)",
     "Sales Cycle (in Months)",
     "Average Annual  Contract Value ($)",
@@ -15,12 +15,12 @@ const Landing = () => {
   ];
 
   const [data, setData] = useState({
-    salesRep: 2,
-    demos: 12,
-    closeRate: 20,
-    salesCycle: 3,
-    aacv: 25000,
-    infoCost: 7200,
+    salesRep: "",
+    demos: "",
+    closeRate: "",
+    salesCycle: "",
+    aacv: "",
+    infoCost: "",
   });
 
   const handleDataChange = (e, value) => {
@@ -29,7 +29,6 @@ const Landing = () => {
       [e.target.name]: Number(value) || Number(e.target.value),
       // net: calculateNet(),
     });
-    console.log(e.target.value);
   };
   const calculateNet = () => {
     const net =
@@ -39,9 +38,30 @@ const Landing = () => {
       (11 - data.salesCycle) *
       data.aacv;
     const res = Number(net);
-    return res.toFixed(0);
+    console.log(data.salesCycle);
+    if (
+      data.salesRep === "" &&
+      data.demos === "" &&
+      data.closeRate === "" &&
+      data.salesCycle === "" &&
+      data.aacv === "" &&
+      data.infoCost === ""
+    )
+      return "";
+    const ans = res.toFixed(0);
+    return ans.toLocaleString("en-US");
   };
   const calculateTotalRoi = () => {
+    if (
+      data.salesRep === "" &&
+      data.demos === "" &&
+      data.closeRate === "" &&
+      data.salesCycle === "" &&
+      data.aacv === "" &&
+      data.infoCost === ""
+    )
+      return "";
+    if (data.infoCost === 0 || data.infoCost === "") return 0;
     const ans = calculateNet() / data.infoCost;
     const res = Number(ans);
     return res.toFixed(0);
@@ -146,6 +166,7 @@ const Landing = () => {
                 float: "right",
                 fontSize: 20,
                 color: "#1c3b71",
+                paddingRight: 15,
               }}
               value={data.salesRep}
               onChange={handleDataChange}
@@ -173,6 +194,7 @@ const Landing = () => {
                 float: "right",
                 fontSize: 20,
                 color: "#1c3b71",
+                paddingRight: 15,
               }}
               name="demos"
               value={data.demos}
@@ -200,6 +222,7 @@ const Landing = () => {
                 float: "right",
                 fontSize: 20,
                 color: "#1c3b71",
+                paddingRight: 15,
               }}
               name="closeRate"
               value={data.closeRate}
@@ -227,6 +250,7 @@ const Landing = () => {
                 float: "right",
                 fontSize: 20,
                 color: "#1c3b71",
+                paddingRight: 15,
               }}
               type="number"
               name="salesCycle"
@@ -254,7 +278,9 @@ const Landing = () => {
                 float: "right",
                 fontSize: 20,
                 color: "#1c3b71",
+                paddingRight: 15,
               }}
+              type="number"
               name="aacv"
               value={data.aacv}
               onChange={handleDataChange}
@@ -281,7 +307,9 @@ const Landing = () => {
                 float: "right",
                 fontSize: 20,
                 color: "#1c3b71",
+                paddingRight: 15,
               }}
+              type="number"
               name="infoCost"
               value={data.infoCost}
               onChange={handleDataChange}
@@ -310,9 +338,11 @@ const Landing = () => {
                 float: "right",
                 textAlign: "right",
                 color: "#1c3b71",
+                borderRadius: 2,
+                paddingRight: 15,
               }}
             >
-              {calculateNet()}
+              {calculateNet().toLocaleString("en-US")}
             </span>
           </Col>
         </Row>
