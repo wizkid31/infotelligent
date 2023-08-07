@@ -76,44 +76,6 @@ const Landing = () => {
             <LogoText />
           </span>
         </Row>
-        {/*-------------First Row------------------ */}
-        <Row
-          style={{
-            // fontFamily: "PlusJakartaSans-Regular",
-            backgroundColor: "#F0F5FD",
-            padding: "18px 0px 18px 36px",
-            borderRadius: 2,
-            marginBottom: 40,
-          }}
-        >
-          <Row style={{ marginBottom: 10 }}>
-            <h4
-              style={{
-                color: "#1c3b71",
-                fontSize: 20,
-              }}
-            >
-              ROI Calculator
-            </h4>
-          </Row>
-          <Row
-            style={{
-              // fontFamily: "PlusJakartaSans-Regular",
-              backgroundColor: "#FFFFFF",
-              boxShadow: "0px 0px 8px 0px rgba(0,0,0,0.1)",
-              borderRadius: 2,
-              paddingTop: "9px",
-              paddingBottom: "9px",
-              fontSize: 18,
-            }}
-          >
-            <Col style={{ color: "#616680" }}>Total ROI</Col>
-            <Col style={{ textAlign: "right", color: "#1c3b71", fontSize: 20 }}>
-              {calculateTotalRoi()}
-            </Col>
-          </Row>
-        </Row>
-        {/*-------------First Row End------------------ */}
 
         <Row
           style={{
